@@ -37,5 +37,4 @@ class SimpleModelTest {
                 .hasMessageContaining(word, number)
                 .hasMessageContaining("name");
     }
-
 }

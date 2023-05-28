@@ -1,6 +1,9 @@
 package ru.job4j.iterator;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.NoSuchElementException;
+
 import static org.assertj.core.api.Assertions.*;
 
 class ArrayItTest {
@@ -11,7 +14,7 @@ class ArrayItTest {
                 new int[] {1, 2, 3}
         );
         boolean result = iterator.hasNext();
-        assertThat(result).isTrue();
+        assertThat(iterator.hasNext()).isTrue();
         assertThat(iterator.hasNext()).isTrue();
     }
 
@@ -23,5 +26,12 @@ class ArrayItTest {
         assertThat(iterator.next()).isEqualTo(1);
         assertThat(iterator.next()).isEqualTo(2);
         assertThat(iterator.next()).isEqualTo(3);
+    }
+    @Test
+    public void whenNextFromEmpty() {
+        ArrayIt iterator = new ArrayIt(
+                new int[] {}
+        );
+        iterator.next();
     }
 }

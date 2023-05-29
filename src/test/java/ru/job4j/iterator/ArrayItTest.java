@@ -33,6 +33,6 @@ class ArrayItTest {
         ArrayIt iterator = new ArrayIt(
                 new int[] {}
         );
-        assertThrows(NoSuchElementException.class,iterator::next);
+        assertThrows(NoSuchElementException.class, iterator::next);
     }
 }

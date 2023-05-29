@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ArrayItTest {
 
@@ -32,6 +33,6 @@ class ArrayItTest {
         ArrayIt iterator = new ArrayIt(
                 new int[] {}
         );
-        iterator.next();
+        assertThrows(NoSuchElementException.class,iterator::next);
     }
 }

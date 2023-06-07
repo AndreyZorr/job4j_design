@@ -17,12 +17,9 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         if (size == container.length) {
             container = grow();
         }
-        container[size++] = value;
+        container[size] = value;
+        size++;
         modCount++;
-    }
-    public T[] grow() {
-        int newCapacity = (int) (container.length * 2);
-        return Arrays.copyOf(container, newCapacity);
     }
 
     @Override
@@ -37,20 +34,19 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     public T remove(int index) {
         Objects.checkIndex(index, size);
         T oldValue = container[index];
-        int numMoved = size - index - 1;
-        if (numMoved > 0) {
+        int numMoved = container.length - index - 1;
             System.arraycopy(container, index + 1,
                     container, index, numMoved);
-        }
-        container[--size] = null;
+        container[container.length - 1] = null;
         modCount++;
+        size--;
         return oldValue;
     }
 
     @Override
     public T get(int index) {
         Objects.checkIndex(index, size);
-        return (T) container[index];
+        return container[index];
     }
 
     @Override
@@ -66,6 +62,9 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
             @Override
             public boolean hasNext() {
+                if (exprctionModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
                 return point < size;
             }
 
@@ -74,11 +73,13 @@ public class SimpleArrayList<T> implements SimpleList<T> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                if (exprctionModCount != modCount) {
-                    throw new ConcurrentModificationException();
-                }
-                return  (T) container[point++];
+                return container[point++];
             }
         };
+    }
+    public T[] grow() {
+        return container.length == 0 ? Arrays.copyOf(
+                container, container.length + 2)
+                : Arrays.copyOf(container, container.length * 2);
     }
 }

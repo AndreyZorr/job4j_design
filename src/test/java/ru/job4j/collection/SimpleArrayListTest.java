@@ -168,7 +168,7 @@ class SimpleArrayListTest {
         IntStream.range(3, 10).forEach(v -> list.add(v));
         assertThat(list.size()).isEqualTo(10);
     }
-/*
+
     @Test
     void whenIncreaseEmptyContainer() {
         list = new SimpleArrayList<>(0);
@@ -195,7 +195,7 @@ class SimpleArrayListTest {
         assertThatThrownBy(iterator::hasNext)
                 .isInstanceOf(ConcurrentModificationException.class);
     }
-*/
+
     @Test
     void whenSetAfterGetIteratorHasNextThenMustBeOk() {
         Iterator<Integer> iterator = list.iterator();

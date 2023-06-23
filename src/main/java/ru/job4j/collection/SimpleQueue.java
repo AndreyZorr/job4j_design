@@ -9,11 +9,11 @@ public class SimpleQueue<T> {
     private int size = 0;
 
     public T poll() {
-        if (size != 0) {
-            size--;
-            return out.pop();
-        }
+        if (size == 0) {
             throw new NoSuchElementException("Queue is empty");
+        }
+        size--;
+        return out.pop();
     }
 
     public void push(T value) {

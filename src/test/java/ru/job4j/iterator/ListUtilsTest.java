@@ -49,8 +49,7 @@ class ListUtilsTest {
 
     @Test
     void whenRemoveAll() {
-        List<Integer> list = List.of(1, 5, 6);
-        ListUtils.removeAll(input, list);
-        assertThat(input).hasSize(1).containsSequence(3);
+        ListUtils.removeAll(input, List.of(1, 3));
+        assertThat(input).isEmpty();
     }
 }

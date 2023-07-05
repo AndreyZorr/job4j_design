@@ -89,6 +89,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         return new Iterator<>() {
             int cursor;
             final int expectedModCount = modCount;
+
             @Override
             public boolean hasNext() {
                 if (modCount != expectedModCount) {
@@ -99,6 +100,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 }
                 return cursor < capacity;
             }
+
             @Override
             public K next() {
                 if (!hasNext()) {

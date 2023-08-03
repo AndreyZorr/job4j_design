@@ -1,24 +1,15 @@
 package ru.job4j.io;
 
-import java.io.FileInputStream;
-
-import static java.awt.SystemColor.text;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReadFile {
     public static void main(String[] args) {
-        try (FileInputStream in = new FileInputStream("data/input.txt")) {
-            StringBuilder text = new StringBuilder();
-            int read;
-            while ((read = in.read()) != -1) {
-                text.append((char) read);
-            }
-            System.out.println(text);
+        try (BufferedReader in = new BufferedReader(new FileReader("data/input.txt"))) {
+            in.lines().forEach(System.out::println);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        String[] lines = text.toString().split(System.lineSeparator());
-        for (String line : lines) {
-            System.out.println(line);
         }
     }
 }

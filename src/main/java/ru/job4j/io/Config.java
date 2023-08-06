@@ -52,3 +52,4 @@ public class Config {
         System.out.println(new Config("data/app.properties"));
     }
 }
+

@@ -39,3 +39,4 @@ class ConfigTest {
        assertThat(exception.getMessage()).isEqualTo("=");
     }
 }
+

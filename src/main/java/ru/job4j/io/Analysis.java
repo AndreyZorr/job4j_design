@@ -5,8 +5,8 @@ import java.io.*;
 public class Analysis {
     public void unavailable(String source, String target) {
         try (BufferedReader br = new BufferedReader(new FileReader(source))) {
-            try (PrintWriter pw = new PrintWriter(new BufferedOutputStream(
-                    new FileOutputStream(target, true)))) {
+            PrintWriter pw = new PrintWriter(new BufferedOutputStream(
+                    new FileOutputStream(target, true)));
                 String st = null;
                 String line;
                 while ((line = br.readLine()) != null) {
@@ -21,9 +21,6 @@ public class Analysis {
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
     }
 
     public static void main(String[] args) {

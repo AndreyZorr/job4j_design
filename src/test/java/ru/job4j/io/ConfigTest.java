@@ -15,19 +15,38 @@ class ConfigTest {
     }
 
     @Test
-    void whenAddit() {
-        String path = "./data/addit.properties";
-        Config config = new Config(path);
-        config.load();
-        assertThat(config.value("name")).isEqualTo("Andrey=");
-    }
-    @Test
     void whenEmpty() {
         String path = "./data/empty.properties";
         Config config = new Config(path);
-        config.load();
-        assertThat(config.value("age")).isEqualTo("32");
+        IllegalArgumentException ex = assertThrows(
+                IllegalArgumentException.class,
+                config::load
+        );
+        assertThat(ex.getMessage()).isEqualTo("value=");
     }
+
+    @Test
+    void whenLog() {
+        String path = "./data/value.properties";
+        Config config = new Config(path);
+        IllegalArgumentException ex = assertThrows(
+                IllegalArgumentException.class,
+                config::load
+        );
+        assertThat(ex.getMessage()).isEqualTo("=value");
+    }
+
+    @Test
+    void whenArg() {
+        String path = "./data/log.properties";
+        Config config = new Config(path);
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                config::load
+        );
+        assertThat(exception.getMessage()).isEqualTo("key=");
+    }
+
     @Test
     void whenBrokenTemp() {
         String path = "./data/brokentemp.properties";
@@ -37,6 +56,17 @@ class ConfigTest {
                config::load
        );
        assertThat(exception.getMessage()).isEqualTo("=");
+    }
+
+    @Test
+    void whenBrokTemp() {
+        String path = "./data/brok.properties";
+        Config config = new Config(path);
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                config::load
+        );
+        assertThat(exception.getMessage()).isEqualTo("key value");
     }
 }
 

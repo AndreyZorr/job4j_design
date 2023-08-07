@@ -5,7 +5,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import java.io.*;
 import java.nio.file.Path;
-import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -23,11 +22,12 @@ class AnalysisTest {
                     + "300 11:02:02");
         }
         File target = tempDir.resolve("target.csv").toFile();
-        Abuse.drop(source.getAbsolutePath(), target.getAbsolutePath(), List.of("server.log", "target.csv"));
+        Analysis analysis = new Analysis();
+        analysis.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
         StringBuilder rsl = new StringBuilder();
         try (BufferedReader in = new BufferedReader(new FileReader(target))) {
             in.lines().forEach(rsl::append);
         }
-        assertThat(rsl).hasToString(rsl.toString());
+        assertThat(" 10:57:01; 11:02:02").hasToString(rsl.toString());
     }
 }

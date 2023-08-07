@@ -28,3 +28,4 @@ public class Analysis {
         analysis.unavailable("data/server.log", "data/target.csv");
     }
 }
+

@@ -15,9 +15,9 @@ public class Dir {
         if (!file.isDirectory()) {
             throw new IllegalArgumentException(String.format("Not directory %s", file.getAbsoluteFile()));
         }
-        System.out.println(String.format("size : %s", file.getTotalSpace()));
         for (File subfile : Objects.requireNonNull(file.listFiles())) {
-            System.out.println(String.format("Имя файла: %s; Размер файла %d", subfile.getName(), subfile.length()));
+            System.out.printf("Имя файла: %s; Размер файла: %d %n", subfile.getName(), subfile.length());
         }
     }
 }
+

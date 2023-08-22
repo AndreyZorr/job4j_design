@@ -12,37 +12,38 @@ import java.util.function.Predicate;
 import static java.nio.file.FileVisitResult.CONTINUE;
 
 public class SearchFiles implements FileVisitor<Path> {
-    private Predicate<Path> conditions;
-    private List<Path> paths = new ArrayList<>();
-    public SearchFiles(Predicate<Path> conditions) {
-        this.conditions = conditions;
-    }
+    private Predicate<Path> condition;
+    private List<Path> paths;
 
-    public List<Path> getPaths() {
-        return paths;
+    public SearchFiles(Predicate<Path> condition) {
+        this.condition = condition;
+        this.paths = new ArrayList<>();
     }
 
     @Override
     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-
-        return CONTINUE;
+        return FileVisitResult.CONTINUE;
     }
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        if (conditions.test(file)) {
+        if (condition.test(file)) {
             paths.add(file);
         }
-        return CONTINUE;
+        return FileVisitResult.CONTINUE;
     }
 
     @Override
     public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
-        return CONTINUE;
+        return FileVisitResult.CONTINUE;
     }
 
     @Override
     public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-        return CONTINUE;
+        return FileVisitResult.CONTINUE;
+    }
+
+    public List<Path> getPaths() {
+        return paths;
     }
 }

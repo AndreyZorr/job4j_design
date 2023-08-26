@@ -18,6 +18,10 @@ public class ConsoleChat {
         this.botAnswers = botAnswers;
     }
 
+    private String getPhrasese(List<String> phrases) {
+        return phrases.get(new Random().nextInt(phrases.size()));
+    }
+
     public void run() {
         boolean rsl = true;
         List<String> list = new ArrayList<>();
@@ -25,11 +29,11 @@ public class ConsoleChat {
         System.out.println("Здраствуйте !");
         String name = input.nextLine();
         List<String> readPhrases = readPhrases();
-        while (!name.equals(OUT)) {
+        while (!OUT.equals(name)) {
             list.add(name);
-            if (name.equals(STOP)) {
+            if (STOP.equals(name)) {
                 rsl = false;
-            } else if (name.equals(CONTINUE)) {
+            } else if (CONTINUE.equals(name)) {
                 rsl = true;
             } else if (rsl) {
                 String answer = getPhrasese(readPhrases);
@@ -40,10 +44,6 @@ public class ConsoleChat {
         }
         list.add(name);
         saveLog(list);
-    }
-
-    private String getPhrasese(List<String> phrases) {
-        return phrases.get(new Random().nextInt(phrases.size()));
     }
 
     private List<String> readPhrases() {

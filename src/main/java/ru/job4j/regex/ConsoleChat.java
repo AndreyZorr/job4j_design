@@ -3,7 +3,6 @@ package ru.job4j.regex;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 public class ConsoleChat {
@@ -19,7 +18,7 @@ public class ConsoleChat {
     }
 
     private String getPhrasese(List<String> phrases) {
-        return phrases.get(new Random().nextInt(phrases.size()));
+        return phrases.get((int) (phrases.size() * Math.random()));
     }
 
     public void run() {
@@ -29,6 +28,7 @@ public class ConsoleChat {
         System.out.println("Здраствуйте !");
         String name = input.nextLine();
         List<String> readPhrases = readPhrases();
+        String answer = getPhrasese(readPhrases);
         while (!OUT.equals(name)) {
             list.add(name);
             if (STOP.equals(name)) {
@@ -36,7 +36,6 @@ public class ConsoleChat {
             } else if (CONTINUE.equals(name)) {
                 rsl = true;
             } else if (rsl) {
-                String answer = getPhrasese(readPhrases);
                 System.out.println(answer);
                 list.add(answer);
             }

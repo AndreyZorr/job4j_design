@@ -7,16 +7,21 @@ import java.util.*;
 public class CSVReader {
 
     public static void handle(ArgsName argsName) throws Exception {
-        String[] filter = argsName.get("filter").split(",");
+        var delimiter = argsName.get("delimiter");
+        var out = argsName.get("out");
+        var path = argsName.get("path");
+        var filters = argsName.get("filter");
+
+        String[] filter = filters.split(",");
         List<String> names = new ArrayList<>();
         List<Integer> filterIndexes = new ArrayList<>();
-        try (BufferedReader in = new BufferedReader(new FileReader(argsName.get("path")));
-             PrintWriter print = !"stdout".equals(argsName.get("out"))
-                     ? new PrintWriter(new FileWriter(argsName.get("out")))
+        try (BufferedReader in = new BufferedReader(new FileReader(path));
+             PrintWriter print = !"stdout".equals(out)
+                     ? new PrintWriter(new FileWriter(out))
                      : new PrintWriter(System.out)) {
             String first = in.readLine();
             if (first != null) {
-                String[] columns = first.split(argsName.get("delimiter"));
+                String[] columns = first.split(delimiter);
                 Collections.addAll(names, columns);
             }
             for (String name : filter) {
@@ -27,7 +32,7 @@ public class CSVReader {
             }
             StringBuilder headerLine = new StringBuilder();
             for (String name : filter) {
-                headerLine.append(name).append(argsName.get("delimiter"));
+                headerLine.append(name).append(delimiter);
             }
             if (headerLine.length() > 0) {
                 headerLine.setLength(headerLine.length() - 1);
@@ -35,7 +40,7 @@ public class CSVReader {
             print.println(headerLine);
             String line;
             while ((line = in.readLine()) != null) {
-                Scanner scanner = new Scanner(line).useDelimiter(argsName.get("delimiter"));
+                Scanner scanner = new Scanner(line).useDelimiter(delimiter);
                 StringBuilder outputLine = new StringBuilder();
                 List<String> values = new ArrayList<>();
                 while (scanner.hasNext()) {
@@ -43,7 +48,7 @@ public class CSVReader {
                 }
                 for (int idx : filterIndexes) {
                     if (idx < values.size()) {
-                        outputLine.append(values.get(idx)).append(argsName.get("delimiter"));
+                        outputLine.append(values.get(idx)).append(delimiter);
                     }
                 }
                 if (outputLine.length() > 0) {

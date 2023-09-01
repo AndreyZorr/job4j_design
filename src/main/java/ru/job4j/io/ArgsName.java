@@ -16,11 +16,17 @@ public class ArgsName {
 
     private void parse(String[] args) throws IllegalArgumentException {
         for (String ar : args) {
-            ar = ar.trim();
-            validateArgs(ar);
-            ar = ar.substring(1);
-            String[] tm = ar.split("=", 2);
-            values.put(tm[0], tm[1]);
+            validateArgument(ar);
+            if (ar.startsWith("-")) {
+                ar = ar.substring(1);
+            }
+            String[] parts = ar.split("=", 2);
+            if (parts.length < 2) {
+                throw new IllegalArgumentException("The argument has wrong template");
+            }
+            String key = parts[0];
+            String value = parts[1];
+            values.put(key, value);
         }
     }
 
@@ -33,14 +39,15 @@ public class ArgsName {
         return names;
     }
 
-    private void validateArgs(String arg) {
+    private void validateArgument(String arg) {
+        String[] parts = arg.split("=", 2);
         if (!arg.startsWith("-")) {
             throw new IllegalArgumentException("Error: This argument '" + arg + "' does not start with a '-' character");
         }
         if (arg.startsWith("-=")) {
             throw new IllegalArgumentException("Error: This argument '" + arg + "' does not contain a key");
         }
-        if (arg.endsWith("=") && (arg.indexOf("=") == arg.lastIndexOf("="))) {
+        if (arg.endsWith("=") && parts[1].isEmpty()) {
             throw new IllegalArgumentException("Error: This argument '" + arg + "' does not contain a value");
         }
         if (!arg.contains("=")) {
@@ -49,10 +56,10 @@ public class ArgsName {
     }
 
     public static void main(String[] args) {
-        ArgsName jvm = ArgsName.of(new String[] {"-Xmx=512", "-encoding=UTF-8"});
+        ArgsName jvm = ArgsName.of(new String[]{"-Xmx=512", "-encoding=UTF-8"});
         System.out.println(jvm.get("Xmx"));
 
-        ArgsName zip = ArgsName.of(new String[] {"-out=project.zip", "-encoding=UTF-8"});
+        ArgsName zip = ArgsName.of(new String[]{"-out=project.zip", "-encoding=UTF-8"});
         System.out.println(zip.get("out"));
     }
 }

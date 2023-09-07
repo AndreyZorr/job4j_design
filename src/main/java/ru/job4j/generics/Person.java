@@ -1,5 +1,7 @@
 package ru.job4j.generics;
 
+import ru.job4j.serialization.json.Contact;
+
 import java.util.Date;
 
 public class Person {
@@ -13,6 +15,9 @@ public class Person {
         this.name = name;
         this.age = age;
         this.birthday = birthday;
+    }
+
+    public Person(boolean b, int age, Contact contact, String[] strings) {
     }
 
     /* getters and setters

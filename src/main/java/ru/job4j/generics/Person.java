@@ -1,6 +1,6 @@
 package ru.job4j.generics;
 
-import ru.job4j.serialization.json.Contact;
+import ru.job4j.io.serialization.json.Contact;
 
 import java.util.Date;
 

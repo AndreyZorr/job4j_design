@@ -1,7 +1,14 @@
-package ru.job4j.serialization.json;
+package ru.job4j.io.serialization.xml;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "number")
 public class Number {
-    private final String number;
+    @XmlAttribute
+    private String number;
+    public Number() {
+    }
     public Number(String number) {
         this.number = number;
     }

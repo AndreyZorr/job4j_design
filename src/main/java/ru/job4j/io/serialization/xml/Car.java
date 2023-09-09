@@ -11,7 +11,7 @@ public class Car {
     private int age;
     private Number number;
     @XmlElementWrapper(name = "owners")
-    @XmlElement(name = "owner")
+    @XmlElement(name = "owners")
     private String[] ownerses;
     public Car() {
     }
@@ -33,6 +33,7 @@ public class Car {
                 + '}';
     }
 }
+
 
 
 

@@ -1,9 +1,8 @@
 package ru.job4j.io.serialization.xml;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 
-@XmlRootElement(name = "number")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Number {
     @XmlAttribute
     private String number;
@@ -20,5 +19,6 @@ public class Number {
                 + '}';
      }
 }
+
 
 

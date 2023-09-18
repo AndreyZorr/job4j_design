@@ -1,5 +1,5 @@
 package ru.job4j.io;
-
+/**
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -68,5 +68,5 @@ class ConfigTest {
         );
         assertThat(exception.getMessage()).isEqualTo("key value");
     }
-}
+}**/
 

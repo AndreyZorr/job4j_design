@@ -1,4 +1,4 @@
-package ru.job4j.search;
+package ru.job4j.io;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,10 +17,10 @@ public class ArgsName {
         }
 
         public static void main(String[] args) {
-            ru.job4j.io.ArgsName jvm = ru.job4j.io.ArgsName.of(new String[]{"-Xmx=512", "-encoding=UTF-8"});
+            ArgsName jvm = ArgsName.of(new String[]{"-Xmx=512", "-encoding=UTF-8"});
             System.out.println(jvm.get("Xmx"));
 
-            ru.job4j.io.ArgsName zip = ru.job4j.io.ArgsName.of(new String[]{"-out=project.zip", "-encoding=UTF-8"});
+            ArgsName zip = ArgsName.of(new String[]{"-out=project.zip", "-encoding=UTF-8"});
             System.out.println(zip.get("out"));
         }
 

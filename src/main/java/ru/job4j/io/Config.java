@@ -1,5 +1,5 @@
 package ru.job4j.io;
-
+/**
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -51,5 +51,6 @@ public class Config {
         System.out.println(new Config("data/app.properties"));
     }
 }
+ **/
 
 

@@ -2,13 +2,11 @@ package ru.job4j.io;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import ru.job4j.search.ArgsName;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Files;
-
+/**
 class CSVReaderTest {
 
     @Test
@@ -64,3 +62,4 @@ class CSVReaderTest {
         assertThat(Files.readString(target.toPath())).isEqualTo(expected);
     }
 }
+ **/

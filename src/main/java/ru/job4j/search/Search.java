@@ -1,6 +1,7 @@
 package ru.job4j.search;
 
 import ru.job4j.io.SearchFiles;
+
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,11 +11,11 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
-public abstract class Search {
+public class Search {
 
     public static void main(String[] args) {
         if (args.length != 4) {
-            throw new IllegalArgumentException("Arguments must be 4");
+            throw new IllegalArgumentException("arguments must be 4");
         }
         ArgsName argsName = ArgsName.of(args);
         validate(argsName);
@@ -73,4 +74,3 @@ public abstract class Search {
         return value2.replace("*", ".*");
     }
 }
-

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
+/**
 public class Zip {
 
     public void packFiles(List<Path> sources, File target) {
@@ -64,3 +64,4 @@ public class Zip {
         }
     }
 }
+ **/

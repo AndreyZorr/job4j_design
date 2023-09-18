@@ -15,7 +15,7 @@ public class Search {
 
     public static void main(String[] args) {
         if (args.length != 4) {
-            throw new IllegalArgumentException("arguments must be 4");
+            throw new IllegalArgumentException("Arguments must be 4");
         }
         ArgsName argsName = ArgsName.of(args);
         validate(argsName);
@@ -74,3 +74,4 @@ public class Search {
         return value2.replace("*", ".*");
     }
 }
+

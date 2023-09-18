@@ -73,3 +73,4 @@ public abstract class Search {
         return value2.replace("*", ".*");
     }
 }
+

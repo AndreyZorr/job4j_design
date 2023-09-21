@@ -32,9 +32,9 @@ create table states (
 
 create table items (
 	id serial primary key,
-	name text
+	name text,
 	users_id int references users(id),
-	categories_id int references categories(id)
+	categories_id int references categories(id),
 	states_id int references states(id)
 );
 

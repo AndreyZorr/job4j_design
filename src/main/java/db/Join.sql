@@ -34,14 +34,11 @@ select * from departament d full join worker w on w.departament_id = d.id;
 
 select * from departament d cross join worker w;
 
-
- *»спользу€ left и right join написать запросы, которые давали бы одинаковый результат*
-
 select * from worker w left join departament d on w.departament_id = d.id where d.id is null;
 
 select * from worker w right join departament d on w.departament_id = d.id;
 
-*—оздать таблицу teens с атрибутами name, gender и заполнить ее. »спользу€ cross join составить все возможные разнополые пары*
+
 
 create table teens(
 	name varchar(255),

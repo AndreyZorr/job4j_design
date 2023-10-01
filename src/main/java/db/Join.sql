@@ -48,7 +48,7 @@ create table teens(
 insert into teens(name, gender) 
 values ('Vika', 'woman'),('Dima', 'man'), ('Irina', 'woman'), ('Nikita', 'man');
 
-
-select DISTINCT t1.name, t1.gender, t2.name, t2.gender
-from teens t1 cross join teens t2
-where t1.name != t2.name; 
+select t1.name as man, t2.name as woman
+from teens t1
+cross join teens t2
+where t1.gender > t2.gender;

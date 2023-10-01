@@ -46,7 +46,9 @@ create table teens(
 );
 
 insert into teens(name, gender) 
-values ('Vika', 'woman'),('Dima', 'man');
+values ('Vika', 'woman'),('Dima', 'man'), ('Irina', 'woman'), ('Nikita', 'man');
 
-select t1.name as a, t2.name b
-from teens t1 cross join teens t2; 
+
+select DISTINCT t1.name, t1.gender, t2.name, t2.gender
+from teens t1 cross join teens t2
+where t1.name != t2.name; 

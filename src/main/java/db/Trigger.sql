@@ -6,12 +6,6 @@ create table products(
 	price integer
 );
 
-create trigger tax_trigger
-    after insert on products
-    referencing new table as inserted
-    for each statement
-    execute procedure tax();
-
 create or replace function tax()
     returns trigger as
 $$
@@ -24,12 +18,13 @@ $$
 $$
 LANGUAGE 'plpgsql';
 
-create trigger tax1_trigger
-    before insert on products
-    for each row
-    execute procedure tax1();
+create trigger tax_trigger
+    after insert on products
+    referencing new table as inserted
+    for each statement
+    execute procedure tax();
 	
-	create or replace function  tax1()
+create or replace function  tax1()
     returns trigger as
 $$
     BEGIN
@@ -38,6 +33,12 @@ $$
     END;
 $$
 LANGUAGE 'plpgsql';
+
+create trigger tax1_trigger
+    before insert on products
+    for each row
+    execute procedure tax1();
+
 	
 create table history_of_price (
     id serial primary key,
@@ -45,11 +46,6 @@ create table history_of_price (
     price integer,
     date timestamp
 );
-
-create trigger history_of_price_trigger
-after insert on products 
-for each row
-execute procedure history_of_price;
 
 create or replace function history_of_price()
     returns trigger as
@@ -61,3 +57,8 @@ $$
     END;
 $$
 LANGUAGE 'plpgsql';
+
+create trigger history_of_price_trigger
+after insert on products 
+for each row
+execute procedure history_of_price;

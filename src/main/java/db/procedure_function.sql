@@ -8,12 +8,12 @@ create table products (
 
 create or replace procedure delete_data(d_count integer, d_id integer)
 language 'plpgsql'
-as $$
-    BEGIN
+as 
+$$
+    begin
 	if d_count <= 0 THEN
     delete from products;
-    end if;
-	END
+    end;
 $$;
 
 create or replace function f_delete_data(d_count integer, d_id integer)

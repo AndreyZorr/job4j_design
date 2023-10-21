@@ -7,11 +7,11 @@ CREATE TABLE customers(
 );
 
 insert into customers
-values (1, 'Иван', 'Иванов', 38, 'Китай'),
-(2, 'Петр', 'Петров', 42, 'Россия'),
-(3, 'Семен', 'Семенов', 30, 'Вьетнам'),
-(4, 'Кирил', 'Кирилов', 38, 'Китай'),
-(5, 'Ольга', 'Ольгова', 40, 'Португалия');
+values (1, 'Ivan', 'Ivanov', 38, 'China'),
+(2, 'Petr', 'Petrov', 42, 'Russia'),
+(3, 'Semen', 'Semenov', 30, 'Vietnam'),
+(4, 'Kiril', 'Kirilob', 38, 'China'),
+(5, 'Olga', 'Olgova', 40, 'Portugal');
 
 select first_name, last_name, age
 from customers

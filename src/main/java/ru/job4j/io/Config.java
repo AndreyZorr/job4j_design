@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.StringJoiner;
 public class Config {
     private final String path;
-    private final Map<String, String> values = new HashMap<String, String>();
+    private final Map<String, String> values = new HashMap<>();
 
     public Config(final String path) {
         this.path = path;
@@ -43,6 +43,6 @@ public class Config {
         return out.toString();
     }
     public static void main(String[] args) {
-        System.out.println(new Config("data/app.properties"));
+        System.out.println(new Config("C:\\projects\\job4j_design\\app.properties"));
     }
 }
